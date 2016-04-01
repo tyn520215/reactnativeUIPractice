@@ -14,32 +14,29 @@ var {
     AppRegistry,
     } = React;
 
-var sliderImgs = [
-  'http://images3.c-ctrip.com/SBU/apph5/201505/16/app_home_ad16_640_128.png',
-  'http://images3.c-ctrip.com/rk/apph5/C1/201505/app_home_ad49_640_128.png',
-  'http://images3.c-ctrip.com/rk/apph5/D1/201506/app_home_ad05_640_128.jpg'
-];
-var BUIcon = [
-  'https://raw.githubusercontent.com/vczero/vczero.github.io/master/ctrip/%E6%9C%AA%E6%A0%87%E9%A2%98-1.png',
-  'https://raw.githubusercontent.com/vczero/vczero.github.io/master/ctrip/feiji.png',
-  'https://raw.githubusercontent.com/vczero/vczero.github.io/master/ctrip/lvyou.png',
-  'https://raw.githubusercontent.com/vczero/vczero.github.io/master/ctrip/gonglue.png'
-
-];
-
 var Images = [
-  'http://webresource.c-ctrip.com/ResCRMOnline/R5/html5/images/zzz_pic_salead01.png',
-  'http://images3.c-ctrip.com/rk/apph5/B1/201505/app_home_ad06_310_120.jpg'
+    'http://webresource.c-ctrip.com/ResCRMOnline/R5/html5/images/zzz_pic_salead01.png',
+    'http://images3.c-ctrip.com/rk/apph5/B1/201505/app_home_ad06_310_120.jpg'
 ];
+
 
 var Slider = React.createClass({
   render:function(){
     return (
-        <Swiper style={styles.Swapper} showsButtons={false} autoplay={true} height={150} showsPagination={false}>
-          <Image style={styles.slider} source={{url:sliderImgs[0]}}></Image>
-          <Image style={styles.slider} source={{url:sliderImgs[1]}}></Image>
-          <Image style={styles.slider} source={{url:sliderImgs[2]}}></Image>
+    <View>
+        <Swiper style={styles.Swapper} height={150}
+             autoplay={true} showsPagination={false} loop={true}>
+            <View style={styles.slide} >
+                <Image style={styles.slider} source={require('image!banner1')} />
+            </View>
+            <View style={styles.slide} >
+                <Image style={styles.slider} source={require('image!banner2')} />
+            </View>
+            <View style={styles.slide} >
+                <Image style={styles.slider} source={require('image!banner3')} />
+            </View>
         </Swiper>
+    </View>
     )
   }
 });
@@ -48,9 +45,10 @@ var reactnativeUIPractice = React.createClass ( {
   render() {
     return (
         <View style={styles.containerall}>
-          <View style={styles.subView}>
+            <Slider/>
+          <View style={[styles.subView,styles.bgred]}>
             <TouchableHighlight style={[{flex:1}]}>
-              <View style={styles.sub_flex}>
+              <View style={[styles.sub_flex,styles.borderR]}>
                 <View style={styles.sub_com_text}>
                   <Text style={styles.font18}>Hotle</Text>
                 </View>
@@ -59,51 +57,51 @@ var reactnativeUIPractice = React.createClass ( {
                 </View>
               </View>
             </TouchableHighlight>
-            <View style={styles.sub_flex}>
-              <View style={[styles.subborderRB,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>haiwai</Text>
+            <View style={[styles.sub_flex,styles.borderR]}>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
+                <Text style={[styles.font18]}>haiwai</Text>
               </View>
               <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18,styles.font_text]}>zhoubia</Text>
+                <Text style={[styles.font18,styles.font_text]}>zhoubia</Text>
               </View>
             </View>
             <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text]} >
-                <Text style={[styles.sub_com_text,styles.font18]}>tuangou!youhui</Text>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
+                <Text style={[styles.font18]}>tuangou!youhui</Text>
               </View>
-              <View style={[styles.subborderLT,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>kezhan!gongyu</Text>
+              <View style={[styles.font_text,styles.sub_com_text]}>
+                <Text style={[styles.font18]}>kezhan!gongyu</Text>
               </View>
             </View>
           </View>
-          <View style={styles.subView}>
-            <View style={styles.sub_flex}>
+          <View style={[styles.subView,styles.bgblue]}>
+            <View style={[styles.sub_flex,styles.borderR]}>
               <View style={styles.sub_com_text}>
                 <Text style={styles.font18}>Airport</Text>
               </View>
-              <View style={styles.sub_com_text}>
+              <View style={[styles.sub_com_text]}>
                 <Image style={styles.subiconIMG} source={require('image!feiji')}></Image>
               </View>
             </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.subborderRB,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>huochepiap</Text>
+            <View style={[styles.sub_flex,styles.borderR]}>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
+                <Text style={[styles.font18]}>huochepiap</Text>
               </View>
               <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>jieshouji!</Text>
+                <Text style={[styles.font18]}>jieshouji!</Text>
               </View>
             </View>
             <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text]} >
-                <Text style={[styles.sub_com_text,styles.font18]}>qichepiao</Text>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
+                <Text style={[styles.font18]}>qichepiao</Text>
               </View>
-              <View style={[styles.subborderLT,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>zijia!zhuanche</Text>
+              <View style={[,styles.font_text,styles.sub_com_text]}>
+                <Text style={[styles.font18]}>zijia!zhuanche</Text>
               </View>
             </View>
           </View>
-          <View style={styles.subView}>
-            <View style={styles.sub_flex}>
+          <View style={[styles.subView,styles.bggreen]}>
+            <View style={[styles.sub_flex,styles.borderR]}>
               <View style={styles.sub_com_text}>
                 <Text style={styles.font18}>Airport</Text>
               </View>
@@ -111,25 +109,25 @@ var reactnativeUIPractice = React.createClass ( {
                 <Image style={styles.subiconIMG} source={require('image!gonglue')}></Image>
               </View>
             </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.subborderRB,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>huochepiap</Text>
+            <View style={[styles.sub_flex,styles.borderR]}>
+              <View style={[,styles.font_text,styles.sub_com_text,styles.borderB]}>
+                <Text style={[styles.font18]}>huochepiap</Text>
               </View>
               <View style={[styles.font_text,styles.sub_com_text]} >
-                <Text style={[styles.sub_com_text,styles.font18]}>jieshouji!</Text>
+                <Text style={[styles.font18]}>jieshouji!</Text>
               </View>
             </View>
             <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text]} >
-                <Text style={[styles.sub_com_text,styles.font18]}>qichepiao</Text>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
+                <Text style={[styles.font18]}>qichepiao</Text>
               </View>
-              <View style={[styles.subborderLT,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>zijia!zhuanche</Text>
+              <View style={[,styles.font_text,styles.sub_com_text]}>
+                <Text style={[styles.font18]}>zijia!zhuanche</Text>
               </View>
             </View>
           </View>
-          <View style={styles.subView}>
-            <View style={styles.sub_flex}>
+          <View style={[styles.subView,styles.bgorange]}>
+            <View style={[styles.sub_flex,styles.borderR]}>
               <View style={styles.sub_com_text}>
                 <Text style={styles.font18}>Airport</Text>
               </View>
@@ -137,24 +135,31 @@ var reactnativeUIPractice = React.createClass ( {
                 <Image style={styles.subiconIMG} source={require('image!lvyou')}></Image>
               </View>
             </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.subborderRB,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>huochepiap</Text>
+            <View style={[styles.sub_flex,styles.borderR]}>
+              <View style={[,styles.font_text,styles.sub_com_text,styles.borderB]}>
+                <Text style={[styles.font18]}>huochepiap</Text>
               </View>
               <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>jieshouji!</Text>
+                <Text style={[styles.font18]}>jieshouji!</Text>
               </View>
             </View>
             <View style={[styles.sub_flex]}>
-              <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>qichepiao</Text>
+              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
+                <Text style={[styles.font18]}>qichepiao</Text>
               </View>
-              <View style={[styles.subborderLT,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.sub_com_text,styles.font18]}>zijia!zhuanche</Text>
+              <View style={[,styles.font_text,styles.sub_com_text]}>
+                <Text style={[styles.font18]}>zijia!zhuanche</Text>
               </View>
             </View>
           </View>
-          <View style={styles.subBottom}></View>
+          <View style={styles.subBottom}>
+                <View style={[styles.sub_flex]}>
+                    <Image style={styles.botIMG} source={require('image!btn1')}></Image>
+                </View>
+              <View style={[styles.sub_flex]}>
+                  <Image style={styles.botIMG} source={require('image!btn2')}></Image>
+              </View>
+          </View>
         </View>
     );
   }
@@ -180,7 +185,7 @@ var reactnativeUIPractice = React.createClass ( {
     marginBottom:10,
     borderWidth:0.5,
     borderRadius:5,
-    borderColor:"black",
+    borderColor:"white",
     height:180,
     flexDirection:'row'
   },
@@ -190,17 +195,21 @@ var reactnativeUIPractice = React.createClass ( {
     marginRight:15,
     marginBottom:10,
     borderWidth:0.5,
-    borderColor:"black",
+    borderColor:"rgb(211,211,211)",
     height:90,
     flexDirection:'row'
   },
   sub_com_text:{
     flex:1,
-    alignSelf:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    alignSelf:'center'
   },
+   bojuzhong:{
+       justifyContent:'center',
+       alignSelf:'center'
+   } ,
    sub_text:{
-     justifyContent:'center'
+     //justifyContent:'center'
    },
   subborderright:{
     borderRightWidth:0.5,
@@ -209,12 +218,12 @@ var reactnativeUIPractice = React.createClass ( {
   subborderRB:{
     borderRightWidth:0.5,
     borderBottomWidth:0.5,
-    borderColor:'black'
+    borderColor:'white'
   },
   subborderLT:{
     borderLeftWidth:0.5,
     borderTopWidth:0.5,
-    borderColor:'black'
+    borderColor:'white'
   },
   subiconIMG:{
     width:60,
@@ -222,7 +231,8 @@ var reactnativeUIPractice = React.createClass ( {
     //resizeMode:Image.resizeMode.contain
   },
   font18:{
-    fontSize:18
+    fontSize:18,
+      color:"white"
   },
   sub_flex:{
     flex:1
@@ -231,9 +241,31 @@ var reactnativeUIPractice = React.createClass ( {
      justifyContent:'center'
    },
    bgred:{
-     backgroundColor:'red'
-   }
-
+     backgroundColor:"rgb(234,120,126)"
+   },
+     bgblue:{
+         backgroundColor:"rgb(73,158,251)"
+     },
+     bggreen:{
+         backgroundColor:"rgb(120,180,19)"
+     },
+     bgorange:{
+        backgroundColor:"rgb(241,159,59)"
+    },
+     borderR:{
+         borderRightWidth:0.5,
+         borderColor:'white',
+         marginTop:5,
+         marginBottom:5
+     },
+     borderB:{
+         borderBottomWidth:0.5,
+         borderColor:'white'
+     },
+     botIMG:{
+         width:100,
+         height:50,
+     }
 });
 
 AppRegistry.registerComponent('reactnativeUIPractice', () => reactnativeUIPractice);
