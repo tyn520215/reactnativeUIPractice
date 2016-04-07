@@ -4,28 +4,32 @@
  */
 var React = require("react-native");
 var Swiper = require("react-native-swiper");
-
+var Gmeizhi = require("./home.android");
+var About = require("./about.android");
 var {
     Image,
     Text,
     StyleSheet,
     View,
     TouchableHighlight,
+    DrawerLayoutAndroid,
     AppRegistry,
+    TouchableOpacity,
+    Navigator
     } = React;
 
 var Images = [
     'http://webresource.c-ctrip.com/ResCRMOnline/R5/html5/images/zzz_pic_salead01.png',
     'http://images3.c-ctrip.com/rk/apph5/B1/201505/app_home_ad06_310_120.jpg'
 ];
-
+var _navigator
 
 var Slider = React.createClass({
   render:function(){
     return (
     <View>
         <Swiper style={styles.Swapper} height={150}
-             autoplay={true} showsPagination={false} loop={true}>
+             autoplay={true} showsPagination={false} loop={false}>
             <View style={styles.slide} >
                 <Image style={styles.slider} source={require('image!banner1')} />
             </View>
@@ -42,124 +46,42 @@ var Slider = React.createClass({
 });
 
 var reactnativeUIPractice = React.createClass ( {
+  getInitialState(){
+    return {
+    }
+  },
+    renderScene(route,navigator){
+        _navigator= navigator;
+        if(route.id =='main' ){
+            return(
+                <View>
+
+                </View>
+            )
+        }
+        if(route.id =='Gmeizhi'){
+            return(
+                <Gmeizhi route={route} navigator={navigator} />
+            )
+        }
+        if(route.id =='About'){
+            return(
+                <About route={route} navigator={navigator} />
+            )
+        }
+    }  ,
   render() {
-    return (
+
+      );
+      return (
         <View style={styles.containerall}>
-            <Slider/>
-          <View style={[styles.subView,styles.bgred]}>
-            <TouchableHighlight style={[{flex:1}]}>
-              <View style={[styles.sub_flex,styles.borderR]}>
-                <View style={styles.sub_com_text}>
-                  <Text style={styles.font18}>Hotle</Text>
-                </View>
-                <View style={styles.sub_com_text}>
-                  <Image style={styles.subiconIMG} source={require('image!aa1')}></Image>
-                </View>
-              </View>
-            </TouchableHighlight>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
-                <Text style={[styles.font18]}>haiwai</Text>
-              </View>
-              <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18,styles.font_text]}>zhoubia</Text>
-              </View>
-            </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
-                <Text style={[styles.font18]}>tuangou!youhui</Text>
-              </View>
-              <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>kezhan!gongyu</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[styles.subView,styles.bgblue]}>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={styles.sub_com_text}>
-                <Text style={styles.font18}>Airport</Text>
-              </View>
-              <View style={[styles.sub_com_text]}>
-                <Image style={styles.subiconIMG} source={require('image!feiji')}></Image>
-              </View>
-            </View>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
-                <Text style={[styles.font18]}>huochepiap</Text>
-              </View>
-              <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>jieshouji!</Text>
-              </View>
-            </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
-                <Text style={[styles.font18]}>qichepiao</Text>
-              </View>
-              <View style={[,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>zijia!zhuanche</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[styles.subView,styles.bggreen]}>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={styles.sub_com_text}>
-                <Text style={styles.font18}>Airport</Text>
-              </View>
-              <View style={styles.sub_com_text}>
-                <Image style={styles.subiconIMG} source={require('image!gonglue')}></Image>
-              </View>
-            </View>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={[,styles.font_text,styles.sub_com_text,styles.borderB]}>
-                <Text style={[styles.font18]}>huochepiap</Text>
-              </View>
-              <View style={[styles.font_text,styles.sub_com_text]} >
-                <Text style={[styles.font18]}>jieshouji!</Text>
-              </View>
-            </View>
-            <View style={styles.sub_flex}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]} >
-                <Text style={[styles.font18]}>qichepiao</Text>
-              </View>
-              <View style={[,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>zijia!zhuanche</Text>
-              </View>
-            </View>
-          </View>
-          <View style={[styles.subView,styles.bgorange]}>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={styles.sub_com_text}>
-                <Text style={styles.font18}>Airport</Text>
-              </View>
-              <View style={styles.sub_com_text}>
-                <Image style={styles.subiconIMG} source={require('image!lvyou')}></Image>
-              </View>
-            </View>
-            <View style={[styles.sub_flex,styles.borderR]}>
-              <View style={[,styles.font_text,styles.sub_com_text,styles.borderB]}>
-                <Text style={[styles.font18]}>huochepiap</Text>
-              </View>
-              <View style={[styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>jieshouji!</Text>
-              </View>
-            </View>
-            <View style={[styles.sub_flex]}>
-              <View style={[styles.font_text,styles.sub_com_text,styles.borderB]}>
-                <Text style={[styles.font18]}>qichepiao</Text>
-              </View>
-              <View style={[,styles.font_text,styles.sub_com_text]}>
-                <Text style={[styles.font18]}>zijia!zhuanche</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.subBottom}>
-                <View style={[styles.sub_flex]}>
-                    <Image style={styles.botIMG} source={require('image!btn1')}></Image>
-                </View>
-              <View style={[styles.sub_flex]}>
-                  <Image style={styles.botIMG} source={require('image!btn2')}></Image>
-              </View>
-          </View>
+            <Navigator
+                debugOverlay={false}
+                initialRoute={{ title: 'Main', id:'main'}}
+                configureScence={{ configureScence }}
+                renderScene={renderScene}
+                />
+
         </View>
     );
   }
@@ -263,8 +185,31 @@ var reactnativeUIPractice = React.createClass ( {
          borderColor:'white'
      },
      botIMG:{
-         width:100,
-         height:50,
+         width:200,
+         height:85
+     },
+     botIMg1:{
+         width:120,
+         height:120,
+         borderRadius:60,
+         marginTop:130,
+         marginLeft:40
+         //justifyContent: 'center'
+    },
+    authorFontName:{
+        fontSize:20,
+        color:"white",
+        marginTop:170,
+        marginLeft:40,
+        fontWeight:'100'
+    },
+     mottoFont:{
+         fontSize:20,
+         color:"white",
+         marginLeft:40
+     },
+     margin40:{
+         marginLeft:40
      }
 });
 
