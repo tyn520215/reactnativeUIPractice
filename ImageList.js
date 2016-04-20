@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2016/4/7.
- */
 var React = require('react-native');
 
 var {
@@ -8,10 +5,12 @@ var {
     Text,
     StyleSheet,
     View,
-    ListView
+    ListView,
+    AppRegistry
     } = React;
-var REQUEST_URL="http://gank.io/api/data/福利/10/1";
-var ImageList = React.createClass({
+var newRow;
+var index;
+var assembly = React.createClass({
     getInitialState: function() {
         return {
             dataSource: new ListView.DataSource({
@@ -20,47 +19,57 @@ var ImageList = React.createClass({
         };
     },
     componentDidMount: function() {
-        this.fetchData();
+        this.fetchData(true);
     },
-    fetchData:function(){
+    fetchData:function(refresh){
+        if(refresh){
+            this.page = 1;
+            index = this.page
+        }else{
+            this.page++;
+            index=this.page;
+        }
+        var REQUEST_URL="http://gank.io/api/data/福利/10/"+index;
         fetch(REQUEST_URL)
             .then((response) => response.json())
             .then((responseData) => {
+                if(refresh){
+                    newRow = responseData.results;
+                }else{
+                    newRow = newRow.concat(responseData.results);
+                }
                 this.setState({
-                    dataSource:this.state.dataSource.cloneWithRows(responseData),
+                    dataSource:this.state.dataSource.cloneWithRows(newRow),
                     loaded:true
                 });
-        })
-        .done();
+                //DATA.push(responseData.results);
+            })
+            .done();
     },
     //渲染组件
     render: function() {
-        //
-        if (!this.state.loaded) {
+        if(!loaded){
             return this.renderLoadingView();
         }
         return this.renderListView();
+
     },
 
     //渲染loading
     renderLoadingView:function() {
         return (
             <View style = {styles.container}>
-                <Text>Loading movies</Text>
+                <Text>Loading...</Text>
             </View>
         );
     },
 
-    //渲染movie
-    renderMovie:function(movie) {
-
+    //渲染img
+    renderMovie:function(rowData) {
         return (
-            <View style={styles.container}>
-                <Image source={{uri: movie.posters.thumbnail}} style={styles.thumbnail} />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{movie.title}</Text>
-                    <Text style={styles.year}>{movie.year}</Text>
-                </View>
+            <View style={styles.containerImg}>
+                <Image style={styles.meizhiImage} source={{url:rowData.url}}></Image>
+                <Text style={styles.imageNAME}>{rowData.desc}</Text>
             </View>
         );
     },
@@ -71,8 +80,38 @@ var ImageList = React.createClass({
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this.renderMovie}
-                style={styles.listView} />
+                style={styles.listView}
+                onEndReached ={this.fetchData(false)}
+                onEndReachedThreshold ={200}
+                />
         );
     }
 
 });
+
+var styles = StyleSheet.create({
+    containerImg:{
+        width:300,
+        height:420,
+        backgroundColor:'white',
+        borderRadius:5,
+        marginTop:30,
+        alignSelf:'center'
+    },
+    meizhiImage:{
+        width:280,
+        height:400,
+        marginTop:10,
+        marginLeft:10,
+        borderWidth:0.5,
+        borderColor:'black'
+    },
+    listView:{
+        backgroundColor:'rgb(51,143,255)'
+    },
+    imageNAME:{
+        alignSelf:'flex-end',
+        justifyContent:'flex-end'
+    }
+});
+module.exprots=ImageList;

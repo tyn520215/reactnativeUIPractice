@@ -4,7 +4,7 @@
  */
 var React = require("react-native");
 var Swiper = require("react-native-swiper");
-var Gmeizhi = require("./home.android");
+var Home = require("./home.android");
 var About = require("./about.android");
 var {
     Image,
@@ -22,7 +22,7 @@ var Images = [
     'http://webresource.c-ctrip.com/ResCRMOnline/R5/html5/images/zzz_pic_salead01.png',
     'http://images3.c-ctrip.com/rk/apph5/B1/201505/app_home_ad06_310_120.jpg'
 ];
-var _navigator
+var _navigator;
 
 var Slider = React.createClass({
   render:function(){
@@ -46,22 +46,17 @@ var Slider = React.createClass({
 });
 
 var reactnativeUIPractice = React.createClass ( {
-  getInitialState(){
-    return {
-    }
-  },
+
     renderScene(route,navigator){
         _navigator= navigator;
         if(route.id =='main' ){
             return(
-                <View>
-
-                </View>
+                <Home route={route} navigator={navigator} />
             )
         }
         if(route.id =='Gmeizhi'){
             return(
-                <Gmeizhi route={route} navigator={navigator} />
+                <Home route={route} navigator={navigator} />
             )
         }
         if(route.id =='About'){
@@ -71,21 +66,17 @@ var reactnativeUIPractice = React.createClass ( {
         }
     }  ,
   render() {
-
-      );
       return (
         <View style={styles.containerall}>
             <Navigator
                 debugOverlay={false}
                 initialRoute={{ title: 'Main', id:'main'}}
-                configureScence={{ configureScence }}
-                renderScene={renderScene}
+                renderScene={this.renderScene}
                 />
-
         </View>
     );
   }
-})
+});
 
  var styles = StyleSheet.create({
   containerall:{

@@ -13,14 +13,13 @@ var {
 
 var about = React.createClass({
     render:function(){
-        return {
+        return (
         <View>
-            <Image></Image>
-            <Text></Text>
+            <Image source={require('image!gakki')}></Image>
+            <Text>GakkiXIao[T]</Text>
         </View>
-    }
+        )
 }
-
 });
 
 module.exports=about;
