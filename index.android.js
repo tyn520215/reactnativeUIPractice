@@ -4,8 +4,8 @@
  */
 var React = require("react-native");
 var Swiper = require("react-native-swiper");
-var Home = require("./home.android");
-var About = require("./about.android");
+var Home = require("./Home");
+var About = require("./About");
 var {
     Image,
     Text,
@@ -18,78 +18,40 @@ var {
     Navigator
     } = React;
 
-var Images = [
-    'http://webresource.c-ctrip.com/ResCRMOnline/R5/html5/images/zzz_pic_salead01.png',
-    'http://images3.c-ctrip.com/rk/apph5/B1/201505/app_home_ad06_310_120.jpg'
-];
-var _navigator;
 
-var Slider = React.createClass({
-  render:function(){
-    return (
-    <View>
-        <Swiper style={styles.Swapper} height={150}
-             autoplay={true} showsPagination={false} loop={false}>
-            <View style={styles.slide} >
-                <Image style={styles.slider} source={require('image!banner1')} />
-            </View>
-            <View style={styles.slide} >
-                <Image style={styles.slider} source={require('image!banner2')} />
-            </View>
-            <View style={styles.slide} >
-                <Image style={styles.slider} source={require('image!banner3')} />
-            </View>
-        </Swiper>
-    </View>
-    )
-  }
-});
 
-var reactnativeUIPractice = React.createClass ( {
-
-    renderScene(route,navigator){
-        _navigator= navigator;
-        if(route.id =='main' ){
-            return(
-                <Home route={route} navigator={navigator} />
-            )
-        }
-        if(route.id =='Gmeizhi'){
-            return(
-                <Home route={route} navigator={navigator} />
-            )
-        }
-        if(route.id =='About'){
-            return(
-                <About route={route} navigator={navigator} />
-            )
-        }
-    }  ,
-  render() {
-      return (
-        <View style={styles.containerall}>
+var reactnativeUIPractice = React.createClass({
+    renderScene:function(route, navigator){
+        let Component = route.component;
+        return <Component {...route.params} navigator={navigator} />
+    },
+    render() {
+        let defaultName = 'home';
+        let defaultComponent = Home;
+        return (
             <Navigator
-                debugOverlay={false}
-                initialRoute={{ title: 'Main', id:'main'}}
-                renderScene={this.renderScene}
-                />
-        </View>
-    );
-  }
-});
+                initialRoute={{ name: defaultName, component: defaultComponent }}
+                renderScene={this.renderScene} />
+        );
+        }
+    })
+
 
  var styles = StyleSheet.create({
   containerall:{
     flex:1,
-    backgroundColor:'white'
+    backgroundColor:'blue',
+      flexDirection:'row',
+      height:50
   },
-  //swiper
+     navitem:{
+         flex:1
+     },
   Swapper:{
     height:160
   },
   slider:{
     height:160
-    //resizeMode:Image.resizeMode.contain
   },
   subView:{
     marginTop:10,

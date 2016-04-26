@@ -10,12 +10,13 @@ var {
     } = React;
 var newRow;
 var index;
-var assembly = React.createClass({
+var About = require("./About");
+
+var ImageList = React.createClass({
     getInitialState: function() {
         return {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2}),
-            loaded: false
         };
     },
     componentDidMount: function() {
@@ -48,9 +49,7 @@ var assembly = React.createClass({
     },
     //渲染组件
     render: function() {
-        if(!loaded){
-            return this.renderLoadingView();
-        }
+
         return this.renderListView();
 
     },
@@ -73,18 +72,27 @@ var assembly = React.createClass({
             </View>
         );
     },
-
+    pressButton:function(name){
+        var compon;
+        if(name == 'About'){
+            compon= About
+        }
+        navigator.push({
+            name: name,
+            component: compon
+        })
+    },
     //渲染ListView
     renderListView:function(){
         return (
-            <ListView
-                dataSource={this.state.dataSource}
-                renderRow={this.renderMovie}
-                style={styles.listView}
-                onEndReached ={this.fetchData(false)}
-                onEndReachedThreshold ={200}
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderMovie}
+                    style={styles.listView}
+                    onEndReached ={this.fetchData(false)}
+                    onEndReachedThreshold ={200}
                 />
-        );
+        )
     }
 
 });
@@ -112,6 +120,23 @@ var styles = StyleSheet.create({
     imageNAME:{
         alignSelf:'flex-end',
         justifyContent:'flex-end'
+    },
+    tabBars:{
+        flex:1,
+        height:100,
+        flexDirection:'row',
+        backgroundColor:'rgb(38,137,202)'
+    },
+    tabitem:{
+        flex:1
+    },
+
+    tabicon:{
+        alignSelf:'center',
+        width:40,
+        height:40,
+        borderRadius:20
     }
 });
-module.exprots=ImageList;
+
+module.exports= ImageList;
