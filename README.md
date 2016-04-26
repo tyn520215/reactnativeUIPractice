@@ -1,2 +1,3 @@
 # reactnativeUIPractice
 react-native布局练习2加入了react-native swiper轮播组件
+准备写一个简单的RNAPP
